@@ -1,22 +1,22 @@
-const builtAt = new Date();
-const commitSha = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "local";
+import { SectionHeader } from "@/components/ui/section-header";
+import { WEDDING } from "@/config/wedding";
 
 export default function Home() {
+  const { cover, sections } = WEDDING;
+
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-16 text-center">
-      <p className="text-sm tracking-widest text-neutral-500 uppercase">
-        Connection Test
-      </p>
-      <h1 className="text-3xl font-semibold">wedding.ywtechit.com</h1>
-      <p className="text-neutral-600">
-        Vercel 배포와 도메인 연결이 정상적으로 완료되었습니다.
-      </p>
-      <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-left text-sm text-neutral-500">
-        <dt>Build</dt>
-        <dd>{builtAt.toISOString()}</dd>
-        <dt>Commit</dt>
-        <dd>{commitSha}</dd>
-      </dl>
+    <main>
+      <section id="cover" className="px-6 pt-22 pb-20">
+        <SectionHeader
+          eyebrow={cover.eyebrow}
+          title={cover.headingLines.join(" ")}
+        />
+      </section>
+      {sections.map(({ id, eyebrow, title }) => (
+        <section key={id} id={id} className="px-6 pt-22 pb-20">
+          <SectionHeader eyebrow={eyebrow} title={title} />
+        </section>
+      ))}
     </main>
   );
 }
