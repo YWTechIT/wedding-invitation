@@ -39,10 +39,11 @@ src/
     page.tsx           # 섹션을 순서대로 조립
     globals.css        # Tailwind 토큰
   components/
-    sections/          # Cover, Greeting, Calendar, Location, Gallery, Info, Accounts, Guestbook, Share
-    ui/                # SectionTitle, CopyButton 등 반복 조각만
+    sections/          # cover.tsx, greeting.tsx, calendar.tsx, location.tsx, gallery.tsx, info.tsx, accounts.tsx, guestbook.tsx, share.tsx
+    ui/                # section-header.tsx, copy-button.tsx 등 반복 조각만. 타입은 types.ts
   config/
-    wedding.ts         # 이름, 혼주, 일시, 장소, 계좌, 사진 목록 등 모든 내용의 단일 출처
+    wedding.ts         # 이름, 혼주, 일시, 장소, 계좌, 사진 목록 등 모든 내용의 단일 출처(상수 `WEDDING`)
+    types.ts           # WEDDING의 타입
   lib/                 # 날짜 계산, 클립보드 복사 같은 순수 유틸
   db/                  # 방명록 스키마(SQL)와 쿼리
 public/images/         # 사진 원본. next/image로만 렌더링한다.
@@ -54,6 +55,9 @@ public/images/         # 사진 원본. next/image로만 렌더링한다.
 - 청첩장 내용은 컴포넌트에 하드코딩하지 않고 `src/config/wedding.ts`에서 가져온다. 내용 수정이 코드 수정 없이 끝나야 한다.
 - 이미지는 `next/image`, 폰트는 `next/font`를 사용한다. `<img>` 직접 사용 금지.
 - 스타일은 Tailwind 클래스로 작성한다. 색상과 폰트는 `@theme` 토큰(`bg-background`, `text-primary`, `font-serif` 등)만 쓰고 임의 색상 값을 클래스에 직접 넣지 않는다.
+- 파일과 폴더 이름은 kebab-case로 짓는다(`section-header.tsx`). 컴포넌트와 타입 이름은 PascalCase, 함수는 동사형 camelCase다.
+- 타입은 컴포넌트나 설정 파일 안에 선언하지 않고 같은 폴더의 `types.ts`에 모은다. 컴포넌트 props 타입도 포함한다.
+- 파일 단위 상수는 `BIG_SNAKE_CASE`로 쓴다(`WEDDING`, `VARIANT_CLASS_NAMES`). 함수 안의 지역 변수는 camelCase다.
 - 상태 관리 라이브러리는 쓰지 않는다. 필요한 상태는 컴포넌트 로컬 `useState`로 충분하다.
 - 방명록 쓰기와 삭제는 Server Actions로 처리하고 API 라우트를 따로 만들지 않는다. 입력값은 서버에서 검증한다. 예외는 Supabase 일시 중지를 막기 위해 외부 크론(cron-job.org)이 호출하는 핸들러(`app/api/keep-alive`) 하나다. 크론 설정 자체는 저장소에 두지 않는다.
 
