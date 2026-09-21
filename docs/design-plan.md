@@ -33,7 +33,7 @@
 
 | 토큰 | 값 | 용도 |
 | --- | --- | --- |
-| `--color-background` | `#F8F5EF` | 모든 섹션의 배경. 240px 반복 질감 `public/images/paper-grain.png`를 함께 깐다. |
+| `--color-background` | `#F8F5EF` | 모든 섹션의 배경. 240px 반복 종이 질감을 함께 깐다. 질감은 이미지 파일 없이 `globals.css`의 SVG 노이즈 필터(`feTurbulence`)로 그린다. |
 | `--color-card` | `#FFFFFF` | 카드, 버튼, 입력창, 시트의 면 |
 | `--color-foreground` | `#1B1C1F` | 제목, 보조 버튼과 입력창의 테두리 |
 | `--color-body` | `#3C3D40` | 본문, 토스트의 면 |
