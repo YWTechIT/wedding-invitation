@@ -38,7 +38,7 @@
 
 ## 5단계: 방명록과 DB
 
-- DB: Neon Postgres 권장 (Vercel Marketplace 연동, 무료 티어, `DATABASE_URL` 자동 주입). 사용자 확인 대기 중.
+- DB: Supabase로 확정했다(2026-09-21). 자세한 단계는 `docs/implement-plan.md`의 G8에 있다. 아래의 Neon과 Drizzle 관련 내용은 처음의 권장안이며 더는 유효하지 않다.
 - 대안: Supabase(관리 화면 편리하나 과함), Upstash Redis(가볍지만 목록 관리 불편).
 - 구현: 별도 백엔드 없이 Next.js 안에서 처리. 읽기는 서버 컴포넌트, 쓰기와 삭제는 Server Actions, ORM은 Drizzle.
 - 테이블: guestbook(id, name, message, password_hash, created_at). 삭제용 4자리 비밀번호, 스팸 방지용 숨은 필드.
